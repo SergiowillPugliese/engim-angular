@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+
+    
+    .singleCard{
+        box-sizing: border-box;
+        height: 100px;
+        width: calc(100% - 40px);
+        margin: 20px;
+
+        .row {
+            text-align: center;
+        }
+        
+        &.active {
+            background-color: lightyellow;
+            box-shadow: 0 0 2px 3px gray;
+        }
+     
+    }
+    
+
+}

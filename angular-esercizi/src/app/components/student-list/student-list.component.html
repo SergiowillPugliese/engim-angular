@@ -1,0 +1,22 @@
+<!-- 1tabella  -->
+
+<div class="container">
+  <div
+    *ngFor="let element of student"
+    class="singleCard"
+    (click)="changeCard(element)"
+    [class.active]="element == selectedStudent"
+    style="border: 1px solid black"
+  >
+    <div class="row" style="border-bottom: 1px solid black">
+      <p>Id: {{ element.id }}</p>
+    </div>
+    <div class="row">
+      <p>{{ element.name }}</p>
+    </div>
+    <br />
+  </div>
+</div>
+
+
+<app-student [student]="selectedStudent"></app-student>
