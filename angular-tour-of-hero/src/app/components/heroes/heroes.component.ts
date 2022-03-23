@@ -11,7 +11,7 @@ export class HeroesComponent implements OnInit {
   // Variabli che passo alla view
   heroes: Hero[] = HEROESMOCKDATA;
   selectedHero?: Hero;
-  pippo = this.selectedHero != undefined && this.selectedHero.name == 'Bombasto';
+  pippo = this.selectedHero != undefined && this.selectedHero.name == 'Carmelo';
   // END: Variabli che passo alla view
 
   constructor() { }
