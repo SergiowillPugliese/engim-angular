@@ -1,0 +1,39 @@
+Angular è un framework JS open-source realizzato da google ed è tra i più utilizzati per creare applicazioni web.
+
+Typescript è un estensione di JS (ECMAScript 6) sviluppata con l'obiettivo di risolvere problemi di tipizzazione
+in fase di compilazione.
+Il codice deve essere convertito in linguaggio JS prima di essere eseguito.
+
+Model View Controller
+View quello che si vede da una parte (html css), i dati che verranno mostrati dall'altra parte(controller es JS)
+Model fa il controllo e la chiamata API e riporta un oggetto.
+
+npm install come primo comando per fare il clone e recuperare i dati dalla cartella node che non si mette mai in git.
+
+-----------------------------------------------------------------------------------------------------------------------
+
+Tutto angular è architettato a componenti
+
+esistono i MODULI che sono librerie di componenti
+ogni component associato ad un solo modulo
+ogni componente lo si richiama attraverso il suo selettore. Ad esempio per il component è app-root (<app-root></app-root>)
+
+il processo del controller che passa dati alla view si chiama binding
+
+{{}} tra doppie graffe so onseriscono le variabili
+le variabili vanno dichiarate nel component ts ( nomevar: tipo = valore)
+
+
+DA FARE IN OGNI PROGETTO ANGULAR
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  title: string = 'Test';
+}
+
+ng generate component components/nome del component (per generare componente)
