@@ -1,0 +1,8 @@
+<div *ngIf="studentService.selectedStudent">
+    <div><label for="">Firstname:</label> <input type="text" [(ngModel)]="studentService.selectedStudent.firstname"></div>
+    <div><label for="">Lastname:</label> <input type="text" [(ngModel)]="studentService.selectedStudent.lastname"></div>
+
+    <div>
+        <button (click)="close()">Close</button>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<table>
+    <thead>
+        <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let student of students; index as i">
+            <td>{{ student.firstname }}</td>
+            <td>{{ student.lastname }}</td>
+            <td><button (click)="edit(student)">Edit</button></td>
+            <td><button (click)="remove(i)">Remove</button></td>
+        </tr>
+    </tbody>
+</table>

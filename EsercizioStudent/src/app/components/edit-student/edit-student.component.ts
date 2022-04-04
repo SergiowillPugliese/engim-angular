@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EditStudentService } from 'src/app/services/edit-student.service';
+import { StudentService } from 'src/app/services/student.service';
 
 @Component({
   selector: 'app-edit-student',
@@ -8,9 +8,13 @@ import { EditStudentService } from 'src/app/services/edit-student.service';
 })
 export class EditStudentComponent implements OnInit {
 
-  constructor(public editSudent:EditStudentService) { }
+  constructor(public studentService: StudentService) { }
 
   ngOnInit(): void {
+  }
+
+  close() {
+    this.studentService.selectedStudent = undefined;
   }
 
 }

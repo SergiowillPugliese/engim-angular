@@ -1,15 +1,8 @@
-<div class="container mt-3">
-    <div>
-        <label for="name">FirstName: </label>
-        <input id="name" [(ngModel)]="student.firstName" placeholder="firstName">
-    </div>
-    <br>
-    <div>
-        <label for="name">LastName: </label>
-        <input id="name" [(ngModel)]="student.lastName" placeholder="lastName">
-    </div>
-    <br>
-    <div>
-        <input type="button" value="AddStudent">
-    </div>
+<div>
+    <div><label for="">Firstname:</label> <input type="text" [(ngModel)]="student.firstname"></div>
+    <div><label for="">Lastname:</label> <input type="text" [(ngModel)]="student.lastname"></div>
+</div>
+
+<div>
+    <button (click)="add()">Add</button>
 </div>
