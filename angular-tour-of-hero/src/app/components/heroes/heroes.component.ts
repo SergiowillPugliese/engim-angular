@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero } from 'src/app/models/hero'
+//import { HEROESMOCKDATA } from 'src/app/mock-data/mock-heroes';
+import { Hero } from 'src/app/models/hero';
 import { HeroService } from 'src/app/services/hero.service';
 import { MessageService } from 'src/app/services/message.service';
 
@@ -9,33 +10,31 @@ import { MessageService } from 'src/app/services/message.service';
   styleUrls: ['./heroes.component.scss']
 })
 export class HeroesComponent implements OnInit {
-  // Variabli che passo alla view
-  heroes: Hero[] = [];
-  selectedHero?: Hero;
-  pippo = this.selectedHero != undefined && this.selectedHero.name == 'Carmelo';
-  // END: Variabli che passo alla view
+  //variabili che passo alla view
+  heroes: Hero[] = [];  //sto istanziando un array di oggetti con..
+  selectedHero?: Hero  //il ? dopo il nome della variabile mi dice che qll variabile può essere nullabile;
+
 
   constructor(
     private heroService: HeroService,
     private messageService: MessageService
-    ) { }
+    ) { } 
+  
 
-  //metodo di interfaccia LIFECYCLE HOOK
-  ngOnInit(): void {
-    this.getHeroes();
+  ngOnInit(): void { //un metodo che viene fatto appena istanziato il component
+    this.getHeroes(); //mi riempe l'array heroes
   }
 
-  onSelect(pippo: Hero) {
-    this.selectedHero = pippo;
-    this.messageService.add('HeroesComponent: Selected hero id= ' + pippo.id + " and name = " + pippo.name);
+  onSelect(pippo: Hero){
+    this.selectedHero = pippo; //pippo mi arriverà dal frontend dal ciclo col *ngFor
+    this.messageService.add('HeroesComponent: Selected hero id=' + pippo.id );
   }
 
-  getHeroes(): void {
-    //this.heroes = this.heroService.getHeroes();
-    //observable
-    this.heroService.getHeroes().subscribe(response => {
-      this.heroes = response;
-    })
+  getHeroes() : void {
+    //this.heroes = this.heroService.getHeroes();        //this.heroes -> si rifà alla mia variabile //this.heroService -> si rifà a cio che ho passato nel costruttore 
+    this.heroService.getHeroes().subscribe(data => {
+      this.heroes = data
+    });
   }
 
 }

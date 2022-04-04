@@ -1,3 +1,4 @@
+/* ciò che entro "MOCK" significa che mi sto salvando i dati */
 export const HEROESMOCKDATA = [
     { id: 11, name: 'Dr Nice' },
     { id: 12, name: 'Narco' },
@@ -9,4 +10,4 @@ export const HEROESMOCKDATA = [
     { id: 18, name: 'Dr IQ' },
     { id: 19, name: 'Magma' },
     { id: 20, name: 'Tornado' }
-];
+  ]

@@ -1,20 +1,23 @@
 import { Injectable } from '@angular/core';
-import { delay, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { HEROESMOCKDATA } from '../mock-data/mock-heroes';
 import { Hero } from '../models/hero';
 import { MessageService } from './message.service';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeroService {
 
-  constructor(private messageService: MessageService) { }
+  constructor(
+    private messageService: MessageService //inietto la classe "MessageService" e la immagazzino dentro la variabile messageService
+  ) { }
 
-  getHeroes(): Observable<Hero[]> {
-    const HERO: Observable<Hero[]> = of (HEROESMOCKDATA).pipe(delay(1000));
-    this.messageService.add('HeroService: fetched heroes')
-    return HERO;
+  //funzione che poi potrò richiamare dal controller 
+  getHeroes(): Observable<Hero[]> { //
+    //return this.http.get('url-con-i-dati)  -> qst se avro una url per un API
+    const HEROES = of(HEROESMOCKDATA);
+    this.messageService.add("Heroservice: fetched heroes");
+    return HEROES;
   }
 }

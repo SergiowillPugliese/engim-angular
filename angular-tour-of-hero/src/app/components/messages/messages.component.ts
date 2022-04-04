@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero } from 'src/app/models/hero';
 import { MessageService } from 'src/app/services/message.service';
 
 @Component({
@@ -9,11 +8,11 @@ import { MessageService } from 'src/app/services/message.service';
 })
 export class MessagesComponent implements OnInit {
 
-
-  constructor(public messageService: MessageService){}
+  constructor(
+    public messageService: MessageService
+  ) { }
 
   ngOnInit(): void {
-    
   }
 
 }
