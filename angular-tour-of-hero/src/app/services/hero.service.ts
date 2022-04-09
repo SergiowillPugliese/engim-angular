@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HEROESMOCKDATA } from '../mock-data/mock-heroes';
@@ -10,7 +11,8 @@ import { MessageService } from './message.service';
 export class HeroService {
 
   constructor(
-    private messageService: MessageService //inietto la classe "MessageService" e la immagazzino dentro la variabile messageService
+    private messageService: MessageService, //inietto la classe "MessageService" e la immagazzino dentro la variabile messageService
+    private http: HttpClient
   ) { }
 
    //funzione che poi potrò richiamare dal controller 
