@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getHeroes():void {
-    this.heroService.getHeroes().subscribe(data => {this.heroes = data.slice(1,5)});
+    this.heroService.getHeroes().subscribe(data => {this.heroes = data.slice(0,8)});
   }
 
   ngOnDestroy(): void {
