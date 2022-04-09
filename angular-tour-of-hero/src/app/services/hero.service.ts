@@ -21,7 +21,7 @@ export class HeroService {
     //return this.http.get('url-con-i-dati)  -> qst se avro una url per un API
     const HEROES = this.http.get<Hero[]>(this.heroesUrl);
     this.log("Heroservice: fetched heroes");
-    return HEROES;
+   return HEROES;
   }
 
   getHero(selectedId: number): Observable<Hero> {
