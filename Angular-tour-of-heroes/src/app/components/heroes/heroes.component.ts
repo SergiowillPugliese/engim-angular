@@ -41,8 +41,8 @@ export class HeroesComponent implements OnInit {
 
   add(name: string): void {
     name = name.trim();
-    if (!name) { 
-      return; 
+    if (!name) {
+      return;
     }
     this.heroService.addHero({ name } as Hero)
       .subscribe(hero => {
@@ -50,8 +50,14 @@ export class HeroesComponent implements OnInit {
       });
   }
 
-  ngOnDestroy(): void {
-    console.log("HeroesComponent ngOnDestroy()");//x capire quando tolto componente dalla view
+  delete(hero: Hero): void {
+    this.heroService.deleteHero(hero.id).subscribe(() =>{
+      this.heroes = this.heroes.filter(h => h !== hero)
+    })
   }
 
-}
+    ngOnDestroy(): void {
+      console.log("HeroesComponent ngOnDestroy()");//x capire quando tolto componente dalla view
+    }
+
+  }

@@ -80,6 +80,41 @@ export class HeroService {
     );
   }
 
+  /** DELETE: delete the hero from the server */
+deleteHero(id: number): Observable<Hero> {
+  const url = `${this.heroesUrl}/${id}`;
+  return this.http.delete<Hero>(url, this.httpOptions).pipe(
+    tap(_ => this.log(`deleted hero id=${id}`)),
+    catchError(error => {
+        console.error(error);
+
+        this.log(`updateHero failed:${error.status}:  ${error.body.error}`);
+
+        return of();
+      })
+  );
+}
+
+/* GET heroes whose name contains search term */
+searchHeroes(term: string): Observable<Hero[]> {
+  if (!term.trim()) {
+    // if not search term, return empty hero array.
+    return of([]);
+  }
+  return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
+    tap(x => x.length ?
+       this.log(`found heroes matching "${term}"`) :
+       this.log(`no heroes matching "${term}"`)),
+    catchError(error => {
+        console.error(error);
+
+        this.log(`updateHero failed:${error.status}:  ${error.body.error}`);
+
+        return of();
+      })
+  );
+}
+
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
     this.messageService.add(`HeroService: ${message}`);
