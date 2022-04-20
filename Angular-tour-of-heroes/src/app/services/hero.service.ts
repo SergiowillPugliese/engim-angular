@@ -22,10 +22,10 @@ export class HeroService {
 
   //funzione che poi potrò richiamare dal controller 
   getHeroes(): Observable<Hero[]> { //
-    return  this.http.get<Hero[]>(this.heroesUrl)
+    return this.http.get<Hero[]>(this.heroesUrl)
       .pipe(
         tap(_ => this.log('fetched heroes ')),
-        catchError( error => { 
+        catchError(error => {
           console.error(error);
 
           this.log(`getHeroes failed: ${error.message}`);
@@ -38,44 +38,51 @@ export class HeroService {
 
 
   getHero(selectedId: number): Observable<Hero> {
-    return this.http.get<Hero>(this.heroesUrl +'/'+ selectedId)
-    .pipe(
-      tap(_=> this.log(`fetched hero id = ${selectedId}`)),
-      catchError(error => {
+    return this.http.get<Hero>(this.heroesUrl + '/' + selectedId)
+      .pipe(
+        tap(_ => this.log(`fetched hero id = ${selectedId}`)),
+        catchError(error => {
           console.error(error);
 
           this.log(`getHero id=${selectedId} failed:${error.status}:  ${error.body.error}`);
 
           return of();
-      }),
-    )
+        }),
+      )
   }
 
 
-/** PUT: update the hero on the server */
-updateHero(hero: Hero): Observable<any> {
-  return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
-    tap(_ => this.log(`updated hero id=${hero.id}`)),
-    catchError(error => {
+  /** PUT: update the hero on the server */
+  updateHero(hero: Hero): Observable<any> {
+    return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
+      tap(_ => this.log(`updated hero id=${hero.id}`)),
+      catchError(error => {
         console.error(error);
 
         this.log(`updateHero failed:${error.status}:  ${error.body.error}`);
 
         return of();
-    })
-    
+      })
+    );
+  }
 
-  );
-}
- 
+  /** POST: add a new hero to the server */
+  addHero(hero: Hero): Observable<Hero> {
+    return this.http.post<Hero>(this.heroesUrl, hero, this.httpOptions).pipe(
+      tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
+      catchError(error => {
+        console.error(error);
 
+        this.log(`updateHero failed:${error.status}:  ${error.body.error}`);
+
+        return of();
+      })
+    );
+  }
 
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
     this.messageService.add(`HeroService: ${message}`);
   }
 
-
-
-  
 }

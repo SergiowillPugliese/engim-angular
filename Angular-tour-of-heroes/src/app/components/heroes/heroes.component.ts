@@ -12,31 +12,42 @@ import { MessageService } from 'src/app/services/message.service';
 export class HeroesComponent implements OnInit {
   //variabili che passo alla view
   heroes: Hero[] = [];  //sto istanziando un array di oggetti con..
-//selectedHero?: Hero  
+  //selectedHero?: Hero  
 
 
   constructor(
     private heroService: HeroService,
     private messageService: MessageService
-    ) { } 
-  
+  ) { }
 
-  ngOnInit(): void { 
+
+  ngOnInit(): void {
     console.log("HeroesComponent ngOnInit()");//x capire quando messo/inizializzato componente nella view
     this.getHeroes(); //mi riempe l'array heroes
   }
-/* 
-  onSelect(pippo: Hero){
-    this.selectedHero = pippo; //pippo mi arriverà dal frontend dal ciclo col *ngFor
-    this.messageService.add('HeroesComponent: Selected hero id=' + pippo.id );
-  }
-   */
+  /* 
+    onSelect(pippo: Hero){
+      this.selectedHero = pippo; //pippo mi arriverà dal frontend dal ciclo col *ngFor
+      this.messageService.add('HeroesComponent: Selected hero id=' + pippo.id );
+    }
+     */
 
-  getHeroes() : void {
+  getHeroes(): void {
     //this.heroes = this.heroService.getHeroes();        //this.heroes -> si rifà alla mia variabile //this.heroService -> si rifà a cio che ho passato nel costruttore 
     this.heroService.getHeroes().subscribe(data => {
       this.heroes = data
     });
+  }
+
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { 
+      return; 
+    }
+    this.heroService.addHero({ name } as Hero)
+      .subscribe(hero => {
+        this.heroes.push(hero);
+      });
   }
 
   ngOnDestroy(): void {
